@@ -118,7 +118,6 @@ function lateral(num, nombre) {
 }
 
 function enviarDatos() {
-    console.log("hola");
     var textoVentana = "";
     if (permitir) {
         textoVentana += new Date()
@@ -146,7 +145,6 @@ function enviarDatos() {
 
 function abrirVentana() {
     var ventana=  window.open("./paginaExtra.html", "pop-up", "width=500,height=300");
-    console.log(ventana.document);
 }
 
 
