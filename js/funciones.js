@@ -142,13 +142,14 @@ function enviarDatos() {
 
 }
 
-
-
 function abrirVentana() {
-    var ventana= window.open("./paginaExtra.html", "pop-up", "width=500,height=300");
+      window.open("./paginaExtra.html", "pop-up", "width=500,height=300");
 }
 
+
+
 /*
+
 function ventana() {
     var texto = "";
     for (var i = 0; i < 10; i++) {
@@ -169,6 +170,7 @@ function ventana() {
     }
     return texto;
 }
+
 
 
 function reiniciar() {
