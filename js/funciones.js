@@ -46,15 +46,14 @@ var divLateral;
 var colores;
 var permitir = false;
 var ventaAux;
-var ventanaN;
 
 //Ejercicio
 
 
 window.onload = function() {
     inputs = document.getElementsByTagName("input");
-    ventaAux = document.getElementById("realizarVentana");
-    ventaAux.addEventListener("click", abrirVentana, false);
+    ventaAux = document.getElementsByTagName("form");
+    ventaAux[0].addEventListener("submit", abrirVentana, false);
 }
 
 //funcion que me permite saber que imagen ha sido pulsada y gracias a la posicion, creo el objeto con los datos necesarios
@@ -118,14 +117,8 @@ function lateral(num, nombre) {
 
 }
 
-
-function abrirVentana() {
-  ventanaN= window.open("../paginaAux.html", "Ventana Auxiliar", "width=500,height=300");
-  ventanaN.document.write(ventanaN.opener.enviarDatos());
-}
-
-//funcion que me activa el boton cuando el cliente ha acabado de comprar,muestra todos los valores en el div de abajo, crea una ventana externa con datos de la fruta y genera el timer para reiniciar todo
 function enviarDatos() {
+    console.log("hola");
     var textoVentana = "";
     if (permitir) {
         textoVentana += new Date()
@@ -141,8 +134,6 @@ function enviarDatos() {
         textoVentana += "<p> Precio Total: " + total.toFixed(2) + " Kilo</p>";
         textoVentana += "<p> Precio Medio:" + (total / aux).toFixed(3) + "€</p>";
 
-      
-
         total = 0;
         aux = 0;
 
@@ -151,6 +142,17 @@ function enviarDatos() {
     return textoVentana;
 
 }
+
+
+function abrirVentana() {
+    var ventana=  window.open("./paginaExtra.html", "pop-up", "width=500,height=300");
+    console.log(ventana.document);
+}
+
+
+
+
+
 
 function ventana() {
     var texto = "";
@@ -191,8 +193,4 @@ function reiniciar() {
     divEscribir = "";
     divLateral = "";
     colores = "";
-}
-
-function limpiar(){
-    ventanaN.close();
 }
