@@ -37,16 +37,24 @@ class FrutaInvierno extends Fruta {
 
 
 //variables auxiliares
-var inputs = document.getElementsByTagName("input");
 
+var inputs;
 var total = 0;
 var aux = 0;
 var divEscribir;
 var divLateral;
 var colores;
 var permitir = false;
+var ventaAux;
 
 //Ejercicio
+
+
+window.onload = function() {
+    inputs = document.getElementsByTagName("input");
+    ventaAux = document.getElementsByTagName("form");
+    ventaAux[0].addEventListener("submit", abrirVentana, false);
+}
 
 //funcion que me permite saber que imagen ha sido pulsada y gracias a la posicion, creo el objeto con los datos necesarios
 function almacen(num) {
@@ -89,7 +97,7 @@ function cantidad(num) {
 //funcion que me insertara en el div lateral toda la informacion necesaria de la fruta antes pulsada, ademas le cambio el color de fondo como el ejercicio pide
 function lateral(num, nombre) {
     divLateral = document.getElementById("lateral");
-    
+
     divLateral.innerHTML += "<p class='fruta' name='" + almacenObjeto[num].nombre + "'> Nombre: " + almacenObjeto[num].nombre + " ---  Kilos" + " --- " + almacenObjeto[num].cantidad + "</p>";
     colores = document.getElementsByClassName('fruta');
     var x = Math.floor(Math.random() * 256);
@@ -106,38 +114,37 @@ function lateral(num, nombre) {
         }
 
     }
-    
+
 }
 
 
-//funcion que me activa el boton cuando el cliente ha acabado de comprar,muestra todos los valores en el div de abajo, crea una ventana externa con datos de la fruta y genera el timer para reiniciar todo
-function enviar() {
+function abrirVentana() {
+    window.open("../html/paginaExtra.html", "Ventana Auxiliar", "width=500,height=300");
+}
 
+//funcion que me activa el boton cuando el cliente ha acabado de comprar,muestra todos los valores en el div de abajo, crea una ventana externa con datos de la fruta y genera el timer para reiniciar todo
+function enviarDatos() {
+    var textoVentana = "";
     if (permitir) {
-        divEscribir = document.getElementById("final");
-        divEscribir.innerHTML = "";
-        divEscribir.innerHTML += new Date()
+        textoVentana += new Date()
         for (var i = 0; i < 10; i++) {
             if (almacenObjeto[i] != 0) {
-                divEscribir.innerHTML += "<p>" + almacenObjeto[i].nombre + " --- " + almacenObjeto[i].cantidad + " Kilo" + " --- " + almacenObjeto[i].precio.toFixed(2) + "€ " + " --- " + (almacenObjeto[i].cantidad * almacenObjeto[i].precio).toFixed(2) + "€ </p>";
+                textoVentana += "<p>" + almacenObjeto[i].nombre + " --- " + almacenObjeto[i].cantidad + " Kilo" + " --- " + almacenObjeto[i].precio.toFixed(2) + "€ " + " --- " + (almacenObjeto[i].cantidad * almacenObjeto[i].precio).toFixed(2) + "€ </p>";
                 total += precioTotal[i]
                 aux += almacenObjeto[i].cantidad;
             }
             inputs[i].value = "";
 
         }
-        divEscribir.innerHTML += "<p> Precio Total: " + total.toFixed(2) + " Kilo</p>";
-        divEscribir.innerHTML += "<p> Precio Medio:" + (total / aux).toFixed(3) + "€</p>";
+        textoVentana += "<p> Precio Total: " + total.toFixed(2) + " Kilo</p>";
+        textoVentana += "<p> Precio Medio:" + (total / aux).toFixed(3) + "€</p>";
 
         total = 0;
         aux = 0;
 
-        var myWindow = window.open("", "Resultado", "width=400,height=300");
-        myWindow.document.write(ventana());
 
-        setTimeout("reiniciar()", 10000);
     }
-
+    return textoVentana;
 
 }
 

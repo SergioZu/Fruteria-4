@@ -1,67 +1,76 @@
-h1{
+h1 {
     margin: auto;
     text-align: center;
 }
-img{
-width: 150px;
-height: 150px;
+
+img {
+    width: 150px;
+    height: 150px;
 }
 
-div{
+div {
     position: absolute;
     width: 200px;
     height: 200px;
 }
 
-#uno{
-margin-left: 10%;
-margin-top: 2%;
+#uno {
+    margin-left: 10%;
+    margin-top: 2%;
 }
-#dos{
+
+#dos {
     margin-left: 22%;
     margin-top: 2%;
 }
-#tres{
+
+#tres {
     margin-left: 34%;
     margin-top: 2%;
 }
-#cuatro{
+
+#cuatro {
     margin-left: 46%;
     margin-top: 2%;
 }
-#cinco{
+
+#cinco {
     margin-left: 58%;
     margin-top: 2%;
 }
-#seis{
+
+#seis {
     margin-left: 10%;
     margin-top: 16%;
 }
-#siete{
+
+#siete {
     margin-left: 22%;
     margin-top: 16%;
 }
-#ocho{
+
+#ocho {
     margin-left: 34%;
     margin-top: 16%;
 }
-#nueve{
+
+#nueve {
     margin-left: 46%;
     margin-top: 16%;
 }
-#diez{
+
+#diez {
     margin-left: 58%;
     margin-top: 16%;
 }
 
-
-.divFinal{
+.divFinal {
     position: absolute;
     margin-left: 900px;
     margin-top: 600px;
 }
 
-#lateral{    
+#lateral {
     position: absolute;
     margin-left: 72%;
     width: 17%;
@@ -69,12 +78,11 @@ margin-top: 2%;
     overflow: auto;
 }
 
-#final{
+#final {
+    border: 1px solid black;
     text-align: center;
     width: 36%;
-    height: 40%;
+    height: 50%;
     margin-left: 32%;
     margin-top: 31%;
-    
 }
-
