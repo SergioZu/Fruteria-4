@@ -143,11 +143,10 @@ function enviarDatos() {
 }
 
 
+
 function abrirVentana() {
     var ventana=  window.open("./paginaExtra.html", "pop-up", "width=500,height=300");
 }
-
-
 
 
 
@@ -192,3 +191,5 @@ function reiniciar() {
     divLateral = "";
     colores = "";
 }
+
+
