@@ -51,9 +51,9 @@ var ventaAux;
 
 
 window.onload = function() {
-    inputs = document.getElementsByTagName("input");
     ventaAux = document.getElementsByTagName("form");
     ventaAux[0].addEventListener("submit", abrirVentana, false);
+    inputs = document.getElementsByTagName("input");
 }
 
 //funcion que me permite saber que imagen ha sido pulsada y gracias a la posicion, creo el objeto con los datos necesarios
@@ -124,7 +124,7 @@ function enviarDatos() {
         for (var i = 0; i < 10; i++) {
             if (almacenObjeto[i] != 0) {
                 textoVentana += "<p>" + almacenObjeto[i].nombre + " --- " + almacenObjeto[i].cantidad + " Kilo" + " --- " + almacenObjeto[i].precio.toFixed(2) + "€ " + " --- " + (almacenObjeto[i].cantidad * almacenObjeto[i].precio).toFixed(2) + "€ </p>";
-                total += precioTotal[i]
+                total += precioTotal[i];
                 aux += almacenObjeto[i].cantidad;
             }
             inputs[i].value = "";
@@ -145,12 +145,10 @@ function enviarDatos() {
 
 
 function abrirVentana() {
-    var ventana=  window.open("./paginaExtra.html", "pop-up", "width=500,height=300");
+    var ventana= window.open("./paginaExtra.html", "pop-up", "width=500,height=300");
 }
 
-
-
-
+/*
 function ventana() {
     var texto = "";
     for (var i = 0; i < 10; i++) {
@@ -170,7 +168,6 @@ function ventana() {
         }
     }
     return texto;
-
 }
 
 
@@ -192,4 +189,4 @@ function reiniciar() {
     colores = "";
 }
 
-
+*/
