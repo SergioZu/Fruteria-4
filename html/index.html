@@ -12,44 +12,54 @@
 <body>
     <h1>Fruteria</h1>
     <div id="uno">
-        <p><img src="../img/1.jpg" onclick="almacen(0)"> Platano-->0.80€/kg</p>
+        <p><img src="../img/1.jpg"> Platano-->0.80€/kg</p>
         <input type="text">
+        <span class="tooltiptext"></span>
     </div>
     <div id="dos">
-        <p><img src="../img/2.jpg" onclick="almacen(1)">Manzana-->1.20€/kg</p>
+        <p><img src="../img/2.jpg">Manzana-->1.20€/kg</p>
         <input type="text">
+        <span class="tooltiptext"></span>
     </div>
     <div id="tres">
-        <p><img src="../img/3.jpg" onclick="almacen(2)">Pera-->2€/kg</p>
+        <p><img src="../img/3.jpg">Pera-->2€/kg</p>
         <input type="text">
+        <span class="tooltiptext"></span>
     </div>
     <div id="cuatro">
-        <p><img src="../img/4.jpg" onclick="almacen(3)">Sandia-->3.60€/kg</p>
+        <p><img src="../img/4.jpg">Sandia-->3.60€/kg</p>
         <input type="text">
+        <span class="tooltiptext"></span>
     </div>
     <div id="cinco">
-        <p><img src="../img/5.jpg" onclick="almacen(4)">Melon-->1.10€/kg</p>
+        <p><img src="../img/5.jpg">Melon-->1.10€/kg</p>
         <input type="text">
+        <span class="tooltiptext"></span>
     </div>
     <div id="seis">
-        <p><img src="../img/6.jpg" onclick="almacen(5)">Kiwi-->3.40€/kg</p>
+        <p><img src="../img/6.jpg">Kiwi-->3.40€/kg</p>
         <input type="text">
+        <span class="tooltiptext"></span>
     </div>
     <div id="siete">
-        <p><img src="../img/7.jpg" onclick="almacen(6)">Naranja-->6€/kg</p>
+        <p><img src="../img/7.jpg">Naranja-->6€/kg</p>
         <input type="text">
+        <span class="tooltiptext"></span>
     </div>
     <div id="ocho">
-        <p><img src="../img/8.jpg" onclick="almacen(7)">Pomelo-->0.90€/kg</p>
+        <p><img src="../img/8.jpg">Pomelo-->0.90€/kg</p>
         <input type="text">
+        <span class="tooltiptext">sdadsadasda</span>
     </div>
     <div id="nueve">
-        <p><img src="../img/9.jpg" onclick="almacen(8)">Melocoton-->1.60€/kg</p>
+        <p><img src="../img/9.jpg">Melocoton-->1.60€/kg</p>
         <input type="text">
+        <span class="tooltiptext">sdasadsad</span>
     </div>
     <div id="diez">
-        <p><img src="../img/10.jpg" onclick="almacen(9)">cereza-->2.10 €/kg</p>
+        <p><img src="../img/10.jpg">cereza-->2.10 €/kg</p>
         <input type="text">
+        <span class="tooltiptext">dasdasdasdasda</span>
     </div>
     <div id="lateral"></div>
 
@@ -57,20 +67,25 @@
  -->
 
     <div id="final">
-        <form action="#" method="GET">
+        <form action="#" method="GET" id="form1" novalidate>
             <p>Nombre </p>
-            <input type="text">
+            <input type="text" required minlength="4" maxlength="15" id="inputNombre">
             <p>Apellidos</p>
-            <input type="text">
+            <input type="text" required id="inputApellidos">
             <p>Dirección</p>
-            <input type="text">
+            <input type="text" required id="inputDireccion">
             <p>Email</p>
-            <input type="text">
+            <input type="email" required id="inputEmail">
             <br>
             <br>
-            <p>Tarjeta <input type="radio" name="pagos"></p>
-            <p>A tocateja <input type="radio" name="pagos"></p>
+            <p>Tarjeta Si: <input type="radio" name="pagosTarjeta" id="tarjetaSi" required> No: <input type="radio" name="pagosTarjeta" id="tarjetaNo" required></p>
+
+            <p class="invisible" id="parrafoCodigo">Codigo: <input type="text" id="inputCodigo" pattern="[A-Za-z]{3}[0-9]{4}[/_.#&]{1}"></p>
+
+            <p>A tocateja Si: <input type="radio" name="pagosTocateja" required> No: <input type="radio" name="pagosTocateja" required></p>
+
             <input id="realizarVentana" type="submit" value="Realizar Pedido">
+
             <input type="reset" value="Limpiar Formulario">
         </form>
 

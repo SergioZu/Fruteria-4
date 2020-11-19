@@ -1,4 +1,3 @@
-//Base de datos del ejercicio Fruteria
 var precioFruta = new Array(0.80, 1.20, 2, 3.60, 1.10, 3.40, 6, 0.90, 1.60, 2.10);
 var proximidadFruta = new Array(true, true, false, true, false, false, true, false, true, false);
 var regionFruta = new Array("Canarias", "Leon", "Zamora", "Avila", "Caceres", "Barcelona", "Madrid", "Galicia", "Valencia", "Albacete");
@@ -10,7 +9,7 @@ var almacenObjeto = new Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0);
 var cantidadFruta = new Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0);
 var precioTotal = new Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0);
 
-//Clases requeridas para la fruta, la cantidad y el precio;
+
 class Fruta {
     constructor(nombre, precio) {
         this.nombre = nombre;
@@ -34,10 +33,6 @@ class FrutaInvierno extends Fruta {
     }
 }
 
-
-
-//variables auxiliares
-
 var inputs;
 var total = 0;
 var aux = 0;
@@ -46,21 +41,55 @@ var divLateral;
 var colores;
 var permitir = false;
 var ventaAux;
-
-//Ejercicio
+var radioTarjeta1;
+var radioTarjeta2;
+var imagenes;
+var codigo;
+var spans;
 
 
 window.onload = function() {
     ventaAux = document.getElementsByTagName("form");
     ventaAux[0].addEventListener("submit", abrirVentana, false);
     inputs = document.getElementsByTagName("input");
+    radioTarjeta1 = document.getElementById("tarjetaSi");
+    radioTarjeta2 = document.getElementById("tarjetaNo");
+    imagenes = document.getElementsByTagName("img");
+    codigo = document.getElementById("parrafoCodigo");
+    spans = document.getElementsByTagName("span");
+    añadirEventosImagenes();
+    añadirEventosRadio();
+    añadirSpan();
 }
 
-//funcion que me permite saber que imagen ha sido pulsada y gracias a la posicion, creo el objeto con los datos necesarios
+
+function añadirEventosImagenes() {
+
+    for (let index = 0; index < imagenes.length; index++) {
+        imagenes[index].addEventListener("click", almacen.bind(index));
+    }
+}
+
+function añadirEventosRadio() {
+
+    radioTarjeta1.addEventListener("change", comprobarCodigo);
+    radioTarjeta2.addEventListener("change", comprobarCodigo);
+
+}
+
+function añadirSpan() {
+    for (let index = 0; index < spans.length; index++) {
+        spans[index].innerHTML = ventanaInfo(index);
+        console.log(ventanaInfo(index));
+    }
+}
+
+
 function almacen(num) {
+    num = this.toString();
     for (var i = 0; i < 10; i++) {
         if (i == num) {
-            if (almacenObjeto[i] == 0 && i % 2 == 0) { //si es par es de un tipo y si no de otro
+            if (almacenObjeto[i] == 0 && i % 2 == 0) {
                 let frutaV = new FrutaVerano();
                 frutaV.nombre = nombrefruta[i];
                 frutaV.precio = precioFruta[i];
@@ -75,7 +104,7 @@ function almacen(num) {
                 almacenObjeto[i] = frutaI;
 
             }
-            cantidad(num); //metodo que verifica si los kilos estan bien añadidos, si lo estan añado los kilos al objeto
+            cantidad(num);
             precioTotal[i] = almacenObjeto[i].cantidad * almacenObjeto[i].precio;
         }
     }
@@ -94,10 +123,21 @@ function cantidad(num) {
 
 }
 
-//funcion que me insertara en el div lateral toda la informacion necesaria de la fruta antes pulsada, ademas le cambio el color de fondo como el ejercicio pide
+function comprobarCodigo() {
+    var inputCo = document.getElementById("inputCodigo");
+    if (radioTarjeta1.checked == true) {
+        codigo.className = "visible";
+        inputCo.required = true;
+    }
+    if (radioTarjeta1.checked == false) {
+        codigo.className = "invisible";
+        inputCo.required = false;
+    }
+}
+
 function lateral(num, nombre) {
     divLateral = document.getElementById("lateral");
-
+    divLateral.scrollIntoView(false);
     divLateral.innerHTML += "<p class='fruta' name='" + almacenObjeto[num].nombre + "'> Nombre: " + almacenObjeto[num].nombre + " ---  Kilos" + " --- " + almacenObjeto[num].cantidad + "</p>";
     colores = document.getElementsByClassName('fruta');
     var x = Math.floor(Math.random() * 256);
@@ -142,39 +182,28 @@ function enviarDatos() {
 
 }
 
-function abrirVentana() {
-      window.open("./paginaExtra.html", "pop-up", "width=500,height=300");
-}
-
-
-
-/*
-
-function ventana() {
+function ventanaInfo(i) {
     var texto = "";
-    for (var i = 0; i < 10; i++) {
-        if (almacenObjeto[i] != 0 && i % 2 == 0) {
-            if (almacenObjeto[i].proximidad == true) {
-                texto += " Las " + almacenObjeto[i].nombre + " son fruta de verano, de proximidad y de " + almacenObjeto[i].region + "\n";
-            } else {
-                texto += " Las " + almacenObjeto[i].nombre + " son fruta de verano,no de proximidad y de " + almacenObjeto[i].region + "\n";
-            }
-        } else if (almacenObjeto[i] != 0 && i % 2 != 0) {
-            if (almacenObjeto[i].conserva == true) {
-                texto += " Las " + almacenObjeto[i].nombre + "son frutas de inverno y es recomendable conservarlas en fuera de la nevera " + "\n"
-            } else {
-                texto += " Las " + almacenObjeto[i].nombre + "son frutas de inverno y no es recomendable conservarlas en fuera de la nevera " + "\n"
-            }
-
+    if (i % 2 == 0) {
+        if (proximidadFruta[i] == true) {
+            texto += " Las " + nombrefruta[i] + " son fruta de verano, de proximidad y de " + regionFruta[i] + "\n";
+        } else {
+            texto += " Las " + nombrefruta[i] + " son fruta de verano,no de proximidad y de " + regionFruta[i] + "\n";
+        }
+    } else if (i % 2 != 0) {
+        if (conservaFruta[i] == true) {
+            texto += " Las " + nombrefruta[i] + "son frutas de inverno y es recomendable conservarlas en fuera de la nevera " + "\n"
+        } else {
+            texto += " Las " + nombrefruta[i] + "son frutas de inverno y no es recomendable conservarlas en fuera de la nevera " + "\n"
         }
     }
     return texto;
+
 }
 
 
 
 function reiniciar() {
-    divEscribir.innerHTML = '';
     divLateral.innerHTML = "";
 
     for (var i = 0; i < 10; i++) {
@@ -186,9 +215,53 @@ function reiniciar() {
 
     total = 0;
     aux = 0;
-    divEscribir = "";
     divLateral = "";
     colores = "";
 }
 
-*/
+
+function abrirVentana() {
+    var nombreI = document.getElementById("inputNombre");
+    var apellidosI = document.getElementById("inputApellidos");
+    var direccionI = document.getElementById("inputDireccion");
+    var emailI = document.getElementById("inputEmail");
+    var codigoI = document.getElementById("inputCodigo");
+
+    let todoCorrecto = true;
+
+    if (!nombreI.validity.valid) {
+        todoCorrecto = false;
+        nombreI.style.background = "red";
+    } else {
+        nombreI.style.background = "white";
+    }
+    if (!apellidosI.validity.valid) {
+        todoCorrecto = false;
+        apellidosI.style.background = "red";
+    } else {
+        apellidosI.style.background = "white";
+    }
+    if (!emailI.validity.valid) {
+        todoCorrecto = false;
+        emailI.style.background = "red";
+    } else {
+        emailI.style.background = "white";
+    }
+    if (!direccionI.validity.valid) {
+        todoCorrecto = false;
+        direccionI.style.background = "red";
+    } else {
+        direccionI.style.background = "white";
+    }
+    if (!codigoI.validity.valid) {
+        todoCorrecto = false;
+        codigoI.style.background = "red";
+    } else {
+        codigoI.style.background = "white";
+    }
+
+    if (todoCorrecto) {
+        window.open("./paginaExtra.html", "pop-up", "width=500,height=300");
+    }
+
+}
