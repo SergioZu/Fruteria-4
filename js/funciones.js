@@ -80,7 +80,6 @@ function añadirEventosRadio() {
 function añadirSpan() {
     for (let index = 0; index < spans.length; index++) {
         spans[index].innerHTML = ventanaInfo(index);
-        console.log(ventanaInfo(index));
     }
 }
 
