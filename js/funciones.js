@@ -40,23 +40,22 @@ var divEscribir;
 var divLateral;
 var colores;
 var permitir = false;
-var ventaAux;
 var radioTarjeta1;
 var radioTarjeta2;
 var imagenes;
 var codigo;
 var spans;
-
+var ventaAux;
 
 window.onload = function() {
-    ventaAux = document.getElementsByTagName("form");
-    ventaAux[0].addEventListener("submit", abrirVentana, false);
+    
     inputs = document.getElementsByTagName("input");
     radioTarjeta1 = document.getElementById("tarjetaSi");
     radioTarjeta2 = document.getElementById("tarjetaNo");
     imagenes = document.getElementsByTagName("img");
     codigo = document.getElementById("parrafoCodigo");
     spans = document.getElementsByTagName("span");
+    abrirVentana();
     añadirEventosImagenes();
     añadirEventosRadio();
     añadirSpan();
@@ -226,41 +225,56 @@ function abrirVentana() {
     var emailI = document.getElementById("inputEmail");
     var codigoI = document.getElementById("inputCodigo");
 
+    
+    
+    ventaAux = document.getElementById("realizarVentana");
+    ventaAux.addEventListener("click", (event)=>{
+        
     let todoCorrecto = true;
 
     if (!nombreI.validity.valid) {
         todoCorrecto = false;
         nombreI.style.background = "red";
+        event.preventDefault();
     } else {
         nombreI.style.background = "white";
     }
     if (!apellidosI.validity.valid) {
         todoCorrecto = false;
         apellidosI.style.background = "red";
+        event.preventDefault();
     } else {
         apellidosI.style.background = "white";
     }
     if (!emailI.validity.valid) {
         todoCorrecto = false;
         emailI.style.background = "red";
+        event.preventDefault();
     } else {
         emailI.style.background = "white";
     }
     if (!direccionI.validity.valid) {
         todoCorrecto = false;
         direccionI.style.background = "red";
+        event.preventDefault();
     } else {
         direccionI.style.background = "white";
     }
     if (!codigoI.validity.valid) {
         todoCorrecto = false;
         codigoI.style.background = "red";
+        event.preventDefault();
     } else {
         codigoI.style.background = "white";
     }
 
     if (todoCorrecto) {
         window.open("./paginaExtra.html", "pop-up", "width=500,height=300");
+        event.preventDefault();
     }
+
+    });
+
+    
 
 }
